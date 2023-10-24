@@ -15,12 +15,15 @@ export default function Home() {
       try {
         const data = await pokemons();
         setDataAPI(data);
-      } catch(e) {
+        console.log('try', dataAPI)
+      } catch (e) {
         throw e;
       }
     };
     pokeFetch();
   }, []);
+
+  console.log("antesrreturn", dataAPI)
 
   return (
     <>
@@ -28,7 +31,7 @@ export default function Home() {
         {
           dataAPI ? (
             dataAPI.map((pokemon) => (
-              <div>
+              <div key={pokemon.name}>
                 <p>{pokemon.name}</p>
               </div>
             ))
