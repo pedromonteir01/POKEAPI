@@ -1,7 +1,11 @@
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
 .App {
     text-align: center;
   }
-  
   .PokemonList {
     list-style: none;
     padding: 0;
@@ -10,27 +14,98 @@
     justify-content: center;
   }
   
-  .PokemonItem {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 16px;
-    margin: 10px;
-    width: 200px;
+  .card {
+    background: #ffffff;
+    padding: 3px;
+    position: relative;
+    border-radius: 6px;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    display: flex;
+    font-size: 1.5em;
+    color: rgb(88 199 250 / 0%);
+    cursor: pointer;
+    font-family: cursive;
+    height: 40vh;
+    width: 30vh;
+    gap: 10rem;
+    margin-right: 2.8rem;
+    margin-top: 3rem;
+  }
+
+  .card:hover {
+    color: rgb(0, 0, 0);
+    transition: color 1s;
+  }
+  .card:hover:before, .card:hover:after {
+    animation: none;
+    opacity: 0;
   }
   
+  
+  .card::before {
+    content: "";
+    width: 104%;
+    height: 102%;
+    border-radius: 8px;
+    background-image: linear-gradient(
+      var(--rotate)
+      , #fff350, #6fa9ff 45%, #003dc2);
+      position: absolute;
+      z-index: -1;
+      top: -1%;
+      left: -2%;
+      animation: spin 2.5s linear infinite;
+  }
+  
+  .card::after {
+    position: absolute;
+    content: "";
+    top: calc(var(--card-height) / 6);
+    left: 0;
+    right: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    transform: scale(0.8);
+    filter: blur(calc(var(--card-height) / 6));
+    background-image: linear-gradient(
+      var(--rotate)
+      , #fff350, #6fa9ff 45%, #003dc2);
+      opacity: 1;
+    transition: opacity .5s;
+    animation: spin 2.5s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      --rotate: 0deg;
+    }
+    100% {
+      --rotate: 360deg;
+    }
+  }
+  
+  
   .PokemonName {
-    font-size: 1.2em;
+    font-size: 20px;
     font-weight: bold;
-    margin: 10px 0;
+    margin-left: 1rem;
+    margin-top: -15rem;
   }
   
   .PokemonImage {
-    max-width: 100%;
+    height: 14rem;
+    width: 14rem;
+    margin-left: -18rem;
   }
   
   .PokemonTypes {
-    margin-top: 10px;
+    margin-top: 13rem;
+    font-size: 15px;
+    margin-left: -19rem;
   }
   
   .Quantity {

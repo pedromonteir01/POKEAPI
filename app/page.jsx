@@ -249,7 +249,7 @@ export default function Home() {
 
                 <ul className={styles.PokemonList}>
                   {allPokemons.map((pokemon, index) => (
-                    <li key={index} className={styles.PokemonItem}>
+                    <li key={index} className={styles.card}>
                       <h2 className={styles.PokemonName}>{pokemon.name}</h2>
                       <img src={pokemon.sprite} alt={pokemon.name} className={styles.PokemonImage} />
                       <p className={styles.PokemonTypes}>Tipos: {pokemon.types.join(', ')}</p>
