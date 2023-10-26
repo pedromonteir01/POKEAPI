@@ -7,6 +7,7 @@ import axios from 'axios';
 import Cadastro from "@/models/cadastro";
 import Cadastros from "@/models/cadastros";
 import Pokemon from '@/models/pokemon';
+import Card from './components/card/Card';
 
 const pokedex = new ListaPokemon();
 const cadastros = new Cadastros();
@@ -249,11 +250,7 @@ export default function Home() {
 
                 <ul className={styles.PokemonList}>
                   {allPokemons.map((pokemon, index) => (
-                    <li key={index} className={styles.PokemonItem}>
-                      <h2 className={styles.PokemonName}>{pokemon.name}</h2>
-                      <img src={pokemon.sprite} alt={pokemon.name} className={styles.PokemonImage} />
-                      <p className={styles.PokemonTypes}>Tipos: {pokemon.types.join(', ')}</p>
-                    </li>
+                    <Card name={pokemon.name} image={pokemon.sprite} types={pokemon.types} index={index}/>
                   ))}
                 </ul>
               </>
