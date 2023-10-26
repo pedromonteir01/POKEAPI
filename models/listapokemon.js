@@ -1,10 +1,15 @@
 export default class ListaPokemon {
     constructor() {
       this.lista = [];
+      this.regisered = [];
     }
   
     add(pokemon) {
       this.lista.push(pokemon);
+    }
+
+    addRegistered(pokemon) {
+        this.regisered.push(pokemon);
     }
   
     fill(lista) {
@@ -20,7 +25,11 @@ export default class ListaPokemon {
       );
     }
   
-    getAll() {
-      return this.lista;
+    getAll(limit) {
+      return this.lista.slice(0, limit);
+    }
+
+    getRegistered() {
+        return this.regisered;
     }
   }
