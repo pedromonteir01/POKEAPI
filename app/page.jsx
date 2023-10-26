@@ -11,7 +11,6 @@ import Pokemon from '@/models/pokemon';
 const pokedex = new ListaPokemon();
 const cadastros = new Cadastros();
 
-
 export default function Home() {
 
   //cadastrar
