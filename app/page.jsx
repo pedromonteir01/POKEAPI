@@ -133,22 +133,23 @@ export default function Home() {
           <div>
             <>
               <main>
-                <div className={styles.main}>
+                <div className={styles.maindiv}>
                   <h1 className={styles.titulo}>Cadastro</h1>
                   <article className={styles.login}>
                     <section className={styles.input}>
-                      <label>Nome do Pokemon:</label>
+                      <p className={styles.tituloinput}>Pokemon</p>
                       <input type="text"
                         value={nomesPoke}
                         onChange={(param) => {
                           setNomePoke(param.target.value);
                         }}
                         className={styles.inform}
+                        placeholder={"Pokemon"}
                       />
                     </section>
 
                     <section className={styles.input}>
-                      <label>Tipo do Pokemon:</label>
+                    <p className={styles.tituloinput}>Tipo do Pokemon</p>
                       <input type="text"
                         value={tiposPoke}
                         onChange={(param) => {
@@ -156,16 +157,18 @@ export default function Home() {
 
                         }}
                         className={styles.inform}
+                        placeholder={'Tipo do Pokemon'}
                       />
                     </section>
                     <section className={styles.input}>
-                      <label>Imagem do Pokemon:</label>
+                    <p className={styles.tituloinput}>Imagem do Pokemon</p>
                       <input type="text"
                         value={imagePoke}
                         onChange={(param) => {
                           setImagePoke(param.target.value);
                         }}
                         className={styles.inform}
+                        placeholder={'Imagem do Pokemon'}
                       />
                     </section>
 
@@ -184,7 +187,6 @@ export default function Home() {
                   </article>
 
                   <article className={styles.cadastrolista}>
-                    <h2>Lista</h2>
                     <section className={styles.seccadastros}>
                       {
                         lista.map((cadastro) => (
