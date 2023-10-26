@@ -197,11 +197,10 @@ export default function Home() {
                             </div>
                             <div className={styles.btncadastros}>
                               <button onClick={() => edit(cadastro.nomesPoke, cadastro.tiposPoke, cadastro.habilidadesPoke, cadastro.id)} className={styles.edit}>Editar</button>
-                              <button onClick={() => delet(cadastro.id)} className={styles.delet}>Excluir</button>                            </div>
+                              <button onClick={() => delet(cadastro.id)} className={styles.delet}>Excluir</button>                            
                           </div>
                         ))
                       }
-
                     </section>
                   </article>
                 </div>
