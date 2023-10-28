@@ -8,6 +8,7 @@ import Cadastro from "@/models/cadastro";
 import Cadastros from "@/models/cadastros";
 import Pokemon from '@/models/pokemon';
 import Card from './components/card/Card';
+import Pokedex from './components/pokedex/Pokedex';
 
 const pokedex = new ListaPokemon();
 const cadastros = new Cadastros();
@@ -75,6 +76,7 @@ export default function Home() {
   const [imagePoke, setImagePoke] = useState(empty);
 
   const [show, setShow] = useState(false);
+  const [poke, setPoke] = useState(false);
 
   const [lista, setLista] = useState(cadastros.lista);
 
@@ -126,6 +128,8 @@ export default function Home() {
       setLista(cadastros.lista);
     }
   }
+
+
 
   return (
     <div className={styles.App}>
@@ -236,12 +240,8 @@ export default function Home() {
                 <h1>REGISTERED POKEMONS</h1>
                 <ul className={styles.PokemonList}>
                   {
-                    pokedex.regisered.map((pokemon) => (
-                      <li key={pokemon.index} className={styles.PokemonItem}>
-                        <h2>{pokemon.name}</h2>
-                        <img src={pokemon.image} alt={pokemon.name} className={styles.PokemonImage}/>
-                        <p className={styles.PokemonTypes}>{pokemon.types}</p>
-                      </li>
+                    pokedex.regisered.map((pokemon, index) => (
+                      <Card name={pokemon.name} image={pokemon.sprite} types={pokemon.types} index={index}/>
                     ))
                   }
                 </ul>
