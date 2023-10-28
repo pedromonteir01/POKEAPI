@@ -9,6 +9,8 @@ import Cadastros from "@/models/cadastros";
 import Pokemon from '@/models/pokemon';
 import Card from './components/card/Card';
 import Pokedex from './components/pokedex/Pokedex';
+import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
 
 const pokedex = new ListaPokemon();
 const cadastros = new Cadastros();
@@ -133,6 +135,7 @@ export default function Home() {
 
   return (
     <div className={styles.App}>
+      <Header/>
       {
         register ? (
           <div>
@@ -258,7 +261,7 @@ export default function Home() {
           </>
         )
       }
-
+      <Footer/>
     </div>
   );
 }
