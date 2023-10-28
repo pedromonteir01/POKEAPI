@@ -1,16 +1,15 @@
 'use client'
-import Image from 'next/image'
 import styles from './page.module.css'
 import { useEffect, useState } from 'react';
 import ListaPokemon from '@/models/listapokemon';
 import axios from 'axios';
-import Cadastro from "@/models/cadastro";
 import Cadastros from "@/models/cadastros";
 import Pokemon from '@/models/pokemon';
 import Card from './components/card/Card';
 import Pokedex from './components/pokedex/Pokedex';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
+import { Oval } from 'react-loader-spinner';
 
 const pokedex = new ListaPokemon();
 const cadastros = new Cadastros();
@@ -135,7 +134,7 @@ export default function Home() {
 
   return (
     <div className={styles.App}>
-      <Header/>
+      <Header />
       {
         register ? (
           <div>
@@ -237,14 +236,28 @@ export default function Home() {
 
 
             {isLoading ? (
-              <p>Loading...</p>
+              <div className={styles.loading}>
+                <Oval
+                  height={200}
+                  width={200}
+                  color="#ff0000"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                  visible={true}
+                  ariaLabel='oval-loading'
+                  secondaryColor="#ff2000"
+                  strokeWidth={2}
+                  strokeWidthSecondary={2}
+                />
+                <p style={{color: 'red'}}>LOADING...</p>
+              </div>
             ) : (
               <>
                 <h1>REGISTERED POKEMONS</h1>
                 <ul className={styles.PokemonList}>
                   {
                     pokedex.regisered.map((pokemon, index) => (
-                      <Card name={pokemon.name} image={pokemon.sprite} types={pokemon.types} index={index}/>
+                      <Card name={pokemon.name} image={pokemon.sprite} types={pokemon.types} index={index} />
                     ))
                   }
                 </ul>
@@ -253,7 +266,7 @@ export default function Home() {
 
                 <ul className={styles.PokemonList}>
                   {allPokemons.map((pokemon, index) => (
-                    <Card name={pokemon.name} image={pokemon.sprite} types={pokemon.types} index={index}/>
+                    <Card name={pokemon.name} image={pokemon.sprite} types={pokemon.types} index={index} />
                   ))}
                 </ul>
               </>
@@ -261,7 +274,7 @@ export default function Home() {
           </>
         )
       }
-      <Footer/>
+      <Footer />
     </div>
   );
 }
