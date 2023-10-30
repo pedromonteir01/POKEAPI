@@ -130,6 +130,10 @@ export default function Home() {
     }
   }
 
+  const showPokedex = ({ pokemon }) => {
+    setPoke(true);
+    return pokemon;
+  }
 
 
   return (
@@ -249,7 +253,7 @@ export default function Home() {
                   strokeWidth={2}
                   strokeWidthSecondary={2}
                 />
-                <p style={{color: 'red'}}>LOADING...</p>
+                <p style={{ color: 'red' }}>LOADING...</p>
               </div>
             ) : (
               <>
@@ -266,11 +270,18 @@ export default function Home() {
 
                 <ul className={styles.PokemonList}>
                   {allPokemons.map((pokemon, index) => (
-                    <Card name={pokemon.name} image={pokemon.sprite} types={pokemon.types} index={index} />
+                    <Card name={pokemon.name} image={pokemon.sprite} types={pokemon.types} index={index} onClick={showPokedex(pokemon)} />
                   ))}
                 </ul>
               </>
             )}
+            {
+              poke ? (
+
+              ): (
+              setPoke(false)
+            )
+            }
           </>
         )
       }
