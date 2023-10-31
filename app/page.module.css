@@ -1,4 +1,8 @@
 
+@font-face {
+  font-family: 'Pokemon_Solid';
+  src: url(/Pokemon_Solid.ttf);
+}
 
 .App {
     text-align: center;
@@ -53,4 +57,61 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
+}
+.tituloinput{
+  font-family: "Pokemon_Solid";
+  color: #003dc2;
+  font-size: 23px;
+  letter-spacing:2px;
+  margin: 20px;
+}
+.titulo{
+  font-family: 'Pokemon_Solid';
+  letter-spacing:7px;
+  -webkit-text-stroke-width: 3.5px;
+-webkit-text-stroke-color: #003dc2;
+font-size: 3.5em; color: #fff350;
+}
+.main{
+  height: 99vh;
+}
+
+.login{
+  height: 92vh;
+  width: 40vw;
+  background-color: rgba(249, 255, 74, 0.53);
+  border-radius: 20px;
+  margin: auto;
+  margin-top: 70px;
+
+}
+.inform{
+  width: 22vw;
+  height: 5vh;
+  border: none;
+  border-radius: 5px;
+}
+.btn1{
+  width: 15vw;
+  height: 7.5vh;
+  border-radius: 5px;
+  background-color: white;
+  border: none;
+  margin-top: 45px;
+  font-family: "Pokemon_Solid";
+  color: #003dc2;
+  font-size: 18px;
+  letter-spacing:2px;
+}
+.btn1:hover{
+  width: 15vw;
+  height: 7.5vh;
+  border-radius: 5px;
+  background-color: #003dc2;
+  color: #fff350;
+  border: none;
+  margin-top: 45px;
+  font-size: 18px;
+  font-family: "Pokemon_Solid";
+  letter-spacing:2px;
 }
