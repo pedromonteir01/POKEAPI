@@ -1,7 +1,9 @@
+
 @font-face {
   font-family: 'Pokemon_Solid';
   src: url(/Pokemon_Solid.ttf);
 }
+
 .App {
     text-align: center;
   }
