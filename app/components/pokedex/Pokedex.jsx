@@ -9,7 +9,7 @@ const Pokedex = ({ image, index, name, description }) => {
                 <span className={styles.pokeName}> - {name}</span>
             </h3>
             <p className={styles.description}>
-                {description}
+                {description.join(', ')}
             </p>
             <div className={styles.buttons}>
                 <button className={styles.button}>Prev &lt;</button>

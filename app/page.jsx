@@ -72,6 +72,9 @@ export default function Home() {
   const registerPokemon = () => {
     setRegister(true);
   };
+  const listPokemon = () => {
+    setRegister(false);
+  }
 
   //teste
 
@@ -86,9 +89,10 @@ export default function Home() {
   const [show, setShow] = useState(false);
 
   const showCadastros = () => {
+    const separadinho = tiposPoke.split(',');
     if (nomesPoke.trim() == '' || tiposPoke.trim() == '' || imagePoke.trim() == '') {
     } else {
-      const pokemon = new Pokemon(nomesPoke, tiposPoke, imagePoke);
+      const pokemon = new Pokemon(nomesPoke, separadinho, imagePoke);
       pokedex.addRegistered(pokemon);
       setNomePoke(empty);
       setTiposPoke(empty);
@@ -99,6 +103,7 @@ export default function Home() {
 
 
   const showPokedex = (name, type, img, index) => {
+
     setShowModal(true);
     setPokeName(name);
     setPokeType(type);
@@ -125,6 +130,7 @@ export default function Home() {
           <div>
             <>
               <main>
+                <button onClick={listPokemon}>VOLTAR</button>
                 <div className={styles.main}>
 
                   <article className={styles.login}>
@@ -173,29 +179,6 @@ export default function Home() {
                         !show && (
                           <button onClick={showCadastros} className={styles.btn1}>Registrar</button>
                         )
-                      }
-                    </section>
-                  </article>
-
-                  <article className={styles.cadastrolista}>
-                    <section className={styles.seccadastros}>
-                      {
-                        lista.map((cadastro) => (
-                          <div key={cadastro.id} className={styles.cadastros}>
-                            <div className={styles.lista}>
-                              <p><strong>Nome do Pokemon:</strong>{cadastro.nomesPoke}</p>
-                              <p><strong>Tipo do Pokemon:</strong>{cadastro.tiposPoke}</p>
-                              <p><strong>Habilidades do Pokemon:</strong>{cadastro.habilidadesPoke}</p>
-                              <p><strong> Id:</strong>{cadastro.id}</p>
-                            </div>
-                            <div className={styles.btncadastros}>
-                              <button onClick={() => edit(cadastro.nomesPoke, cadastro.tiposPoke, cadastro.habilidadesPoke, cadastro.id)} className={styles.edit}>Editar</button>
-
-                              <button onClick={() => delet(cadastro.id)} className={styles.delet}>Excluir</button>
-                            </div>
-
-                          </div>
-                        ))
                       }
                     </section>
                   </article>
