@@ -146,7 +146,7 @@ export default function Home() {
           <div>
             <>
               <main>
-                <button onClick={listPokemon}>VOLTAR</button>
+                <button onClick={listPokemon} className={styles.btn1}>VOLTAR</button>
                 <div className={styles.main}>
 
                   <article className={styles.login}>
