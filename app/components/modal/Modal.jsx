@@ -2,14 +2,15 @@ import React from 'react';
 import estilo from './modal.module.css';
 import Pokedex from '../pokedex/Pokedex';
 
-const Modal = ({ isOpen, onClose, name, type, img, index}) => {
+const Modal = ({ isOpen, onClose, pokemons, index, id, nex, previous}) => {
   if (!isOpen) {
     return null;
-  }
+  } 
 
-  console.log(name);
-  console.log(type);
-  console.log(img);
+  const pokemon = pokemons.find((pokemon) => pokemon.id == id);
+  console.log(pokemon);
+  console.log(id);
+
   return (
     <>
 
@@ -22,8 +23,8 @@ const Modal = ({ isOpen, onClose, name, type, img, index}) => {
               Fechar
             </button>
           </div>
-
-          <Pokedex name={name} description={type} image={img} index={index}/>
+          
+        <Pokedex image={pokemon.sprite} name={pokemon.name} description={pokemon.types} index={index} nex={nex} previous={previous}/>
 
         </div>
       </div>

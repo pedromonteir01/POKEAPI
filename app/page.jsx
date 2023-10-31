@@ -44,6 +44,7 @@ export default function Home() {
               name: response.data.name,
               sprite: response.data.sprites.front_default,
               types: response.data.types.map((type) => type.type.name),
+              id: response.data.id,
             };
             pokemonDetails.push(pokemonData);
           } catch (error) {
@@ -84,6 +85,7 @@ export default function Home() {
   const [nomesPoke, setNomePoke] = useState(empty);
   const [tiposPoke, setTiposPoke] = useState(empty);
   const [imagePoke, setImagePoke] = useState(empty);
+  const [pokeId, setPokeId] = useState(null);
   const [index, setIndex] = useState(null);
 
   const [show, setShow] = useState(false);
@@ -102,13 +104,16 @@ export default function Home() {
   }
 
 
-  const showPokedex = (name, type, img, index) => {
+  const showPokedex = (id) => {
+
+    const poke = allPokemons.find((pokemon) => pokemon.id == id);
 
     setShowModal(true);
-    setPokeName(name);
-    setPokeType(type);
-    setPokeImg(img);
-    setIndex(index)
+    setPokeName(poke.name);
+    setPokeType(poke.type);
+    setPokeImg(poke.sprite);
+    setIndex(index);
+    setPokeId(id)
     isOpen();
 
   }
@@ -121,6 +126,17 @@ export default function Home() {
     setShowModal(false);
   }
 
+  const next = () => {
+    setPokeId(pokeId + 1);
+  }
+
+  const previous = () => {
+    if(pokeId <= 0) {
+      return 1;
+    } else {
+      setPokeId(pokeId - 1);
+    }
+  }
 
   return (
     <div className={styles.App}>
@@ -238,7 +254,7 @@ export default function Home() {
                 <ul className={styles.PokemonList}>
                   {allPokemons.map((pokemon, index) => (
 
-                    <Card name={pokemon.name} image={pokemon.sprite} types={pokemon.types} index={index} show={() => showPokedex(pokemon.name, pokemon.types, pokemon.sprite, index)} />
+                    <Card name={pokemon.name} image={pokemon.sprite} types={pokemon.types} index={index} show={() => showPokedex(pokemon.id)} />
 
                   ))}
                 </ul>
@@ -246,7 +262,7 @@ export default function Home() {
             )}
             {
               showModal ? (
-                <Modal isOpen={isOpen} onClose={onClose} name={pokeName} type={pokeType} img={pokeImg} index={index} />
+                <Modal isOpen={isOpen} onClose={onClose} pokemons={allPokemons} index={index} id={pokeId} nex={next} previous={previous}/>
               ) : (
                 null
               )

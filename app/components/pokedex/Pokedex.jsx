@@ -1,6 +1,6 @@
 import styles from './pokedex.module.css'
 
-const Pokedex = ({ image, index, name, description }) => {
+const Pokedex = ({ image, index, name, description, previous, nex}) => {
     return (
         <div className={styles.divPoke}>
             <img className={styles.pokemon} src={image} alt="pokemon-image" />
@@ -9,11 +9,18 @@ const Pokedex = ({ image, index, name, description }) => {
                 <span className={styles.pokeName}> - {name}</span>
             </h3>
             <p className={styles.description}>
-                {description.join(', ')}
+                {description.join(', git')}
             </p>
             <div className={styles.buttons}>
-                <button className={styles.button}>Prev &lt;</button>
-                <button className={styles.button}>Next &gt;</button>
+                {
+                    index >= 1 ? (
+                        <button className={styles.button} onClick={previous}>Prev &lt;</button>
+
+                    ) : (
+                        null
+                    )
+                }
+                <button className={styles.button} onClick={nex}>Next &gt;</button>
             </div>
             <img className={styles.pokedex} src="/pokedex.png" alt="pokedex" />
         </div>
