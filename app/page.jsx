@@ -6,7 +6,7 @@ import axios from 'axios';
 import Cadastros from "@/models/cadastros";
 import Pokemon from '@/models/pokemon';
 import Card from './components/card/Card';
-import Pokedex from './components/pokedex/Pokedex';
+import PokedexCard from './components/pokedex/Pokedex';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import { Oval } from 'react-loader-spinner';
@@ -270,18 +270,11 @@ export default function Home() {
 
                 <ul className={styles.PokemonList}>
                   {allPokemons.map((pokemon, index) => (
-                    <Card name={pokemon.name} image={pokemon.sprite} types={pokemon.types} index={index} onClick={showPokedex(pokemon)} />
+                    <Card name={pokemon.name} image={pokemon.sprite} types={pokemon.types} index={index}/>
                   ))}
                 </ul>
               </>
             )}
-            {
-              poke ? (
-
-              ): (
-              setPoke(false)
-            )
-            }
           </>
         )
       }
