@@ -120,6 +120,7 @@
     margin: auto;
     text-align: center;
   }
+
   .titulo{
     -webkit-text-stroke-width: 5px;
 -webkit-text-stroke-color: rgb(0, 0, 165);
@@ -149,3 +150,11 @@ font-size: 5em; color: rgb(247, 247, 99);
     color: #fff350;
     font-size: 20px;
   }
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
