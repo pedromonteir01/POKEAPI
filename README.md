@@ -1,5 +1,3 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Getting Started
 
 First, run the development server:
@@ -20,17 +18,28 @@ You can start editing the page by modifying `app/page.js`. The page auto-updates
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Documentation API
 
-To learn more about Next.js, take a look at the following resources:
+Nosso projeto utilizou a POKEAPI, uma api de pokemon para realizar o trabalho. Ela é uma api  que consome pelo método HTTP GET. É recomendado que se use um parametro de limite no link.
+O método HTTP necessita de um endpoint: (https://pokeapi.co/api/v2/{endpoint}/);
+Exemplo:
+https://pokeapi.co/api/v2/ability
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+o json virá com 4 informações
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+count: 248
+next: "https://pokeapi.co/api/v2/ability/?limit=20&offset=20"
+previous: null
+results: []
 
-## Deploy on Vercel
+O "count" diz sobre o total de recursos disponíveis através desta API 
+O "next" é a URL para acessar a outra página da lista, mesma coisa para o "previous", mas é pra página anterior. Quando é null, não tem outra página
+"results" é uma lista dos resultados da API
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Dentro da results pode ter outros atributos, outras URLs e listas, dependendo da informação acessada.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Demais endpoints podem ser requisitados pelo nome ou pelo Id.
+
+exemplo: "https://pokeapi.co/api/v2/contest-type/{id or name}/"
+
+A utilizada na API é o endpoint de pokemons, "https://pokeapi.co/api/v2/pokemon/"
