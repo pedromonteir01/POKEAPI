@@ -3,16 +3,14 @@ import styles from './page.module.css'
 import { useEffect, useState } from 'react';
 import ListaPokemon from '@/models/listapokemon';
 import axios from 'axios';
-import Cadastros from "@/models/cadastros";
 import Pokemon from '@/models/pokemon';
 import Card from './components/card/Card';
-import PokedexCard from './components/pokedex/Pokedex';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import { Oval } from 'react-loader-spinner';
+import Modal from './components/modal/Modal';
 
 const pokedex = new ListaPokemon();
-const cadastros = new Cadastros();
 
 export default function Home() {
 
@@ -22,6 +20,14 @@ export default function Home() {
   const [allPokemons, setAllPokemons] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [quantity, setQuantity] = useState(32);
+
+  //pokedex state
+  const [showModal, setShowModal] = useState(false);
+
+  //pokemons data by prop
+  const [pokeName, setPokeName] = useState('');
+  const [pokeType, setPokeType] = useState('');
+  const [pokeImg, setPokeImg] = useState('')
 
   useEffect(() => {
     async function fetchPokemons() {
@@ -75,11 +81,9 @@ export default function Home() {
   const [nomesPoke, setNomePoke] = useState(empty);
   const [tiposPoke, setTiposPoke] = useState(empty);
   const [imagePoke, setImagePoke] = useState(empty);
+  const [index, setIndex] = useState(null);
 
   const [show, setShow] = useState(false);
-  const [poke, setPoke] = useState(false);
-
-  const [lista, setLista] = useState(cadastros.lista);
 
   const showCadastros = () => {
     if (nomesPoke.trim() == '' || tiposPoke.trim() == '' || imagePoke.trim() == '') {
@@ -93,46 +97,23 @@ export default function Home() {
     }
   }
 
-  const edit = (nomesPoke, tiposPoke, imagePoke, id) => {
-    setShow(true);
 
-    setNomePoke(nomesPoke);
-    setTiposPoke(tiposPoke);
-    setImagePoke(imagePoke);
+  const showPokedex = (name, type, img, index) => {
+    setShowModal(true);
+    setPokeName(name);
+    setPokeType(type);
+    setPokeImg(img);
+    setIndex(index)
+    isOpen();
 
-    setAux(id);
   }
 
-  const editCadastro = () => {
-
-    cadastros.editarCadastro(aux, nomesPoke, tiposPoke, imagePoke);
-
-    setNomePoke(empty);
-    setTiposPoke(empty);
-    setImagePoke(empty);
-
-    setLista(cadastros.lista);
-
-    setShow(false);
-
-    setAux(null);
-  }
-  const delet = (id) => {
-
-    let already = false;
-
-    cadastros.lista.map((cadastro) => (
-      cadastro.id == id ? already = true : already
-    ))
-    if (already) {
-      cadastros.deleteCadastros(id);
-      setLista(cadastros.lista);
-    }
+  const isOpen = () => {
+    setShowModal(true);
   }
 
-  const showPokedex = ({ pokemon }) => {
-    setPoke(true);
-    return pokemon;
+  const onClose = () => {
+    setShowModal(false);
   }
 
 
@@ -208,7 +189,8 @@ export default function Home() {
                             </div>
                             <div className={styles.btncadastros}>
                               <button onClick={() => edit(cadastro.nomesPoke, cadastro.tiposPoke, cadastro.habilidadesPoke, cadastro.id)} className={styles.edit}>Editar</button>
-                              <button onClick={() => delet(cadastro.id)} className={styles.delet}>Excluir</button>                            </div>
+                              <button onClick={() => delet(cadastro.id)} className={styles.delet}>Excluir</button>
+                            </div>
                           </div>
                         ))
                       }
@@ -270,11 +252,18 @@ export default function Home() {
 
                 <ul className={styles.PokemonList}>
                   {allPokemons.map((pokemon, index) => (
-                    <Card name={pokemon.name} image={pokemon.sprite} types={pokemon.types} index={index}/>
+                    <Card name={pokemon.name} image={pokemon.sprite} types={pokemon.types} index={index} show={() => showPokedex(pokemon.name, pokemon.types, pokemon.sprite, index)} />
                   ))}
                 </ul>
               </>
             )}
+            {
+              showModal ? (
+                <Modal isOpen={isOpen} onClose={onClose} name={pokeName} type={pokeType} img={pokeImg} index={index} />
+              ) : (
+                null
+              )
+            }
           </>
         )
       }

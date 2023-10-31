@@ -1,6 +1,7 @@
 .divPoke {
-    background-color: red;
+    background-color: rgba(255, 0, 0, 0.759);
     display: block;
+    border-radius: 8px;
 }
 
 .pokedex {
@@ -10,18 +11,18 @@
 
 .pokemon {
     position: absolute;
-    bottom: 55%;
+    bottom: 47%;
     left: 50%;
     transform: translate(-63%, 20%);
     height: 18%;
 }
 
-.pokeNum {
+.pokemonData{
     position: absolute;
     font-weight: 600;
     color: #aaa;
-    top: 54.5%;
-    right: 27%;
+    top: 57%;
+    right: 44%;
     font-size: clamp(8px, 5vw, 25px);
 }
 
@@ -32,9 +33,9 @@
 
 .description {
     position: absolute;
-    width: 65%;
-    top: 65%;
-    left: 13.5%;
+    width: 20%;
+    top: 67%;
+    left: 39%;
     margin: 5px;
     border: 2px solid #333;
     border-radius: 5px;
@@ -48,13 +49,13 @@
     bottom: 10%;
     left: 50%;
     width: 65%;
-    transform: translate(-57%, 0);
+    transform: translate(-17%, 0);
     display: flex;
     gap: 20px;
   }
   
   .button {
-    width: 50%;
+    width: 14%;
     padding: 4%;
     border: 2px solid #000;
     border-radius: 5px;
