@@ -1,3 +1,5 @@
+import pokemons from "@/data/poke";
+
 export default class ListaPokemon {
     constructor() {
       this.lista = [];
