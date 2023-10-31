@@ -145,10 +145,12 @@ export default function Home() {
             <>
               <main>
                 <div className={styles.main}>
-                  <h1 className={styles.titulo}>Cadastro</h1>
+
                   <article className={styles.login}>
+
+                    <h1 className={styles.titulo}>Cadastro</h1>
                     <section className={styles.input}>
-                      <label>Nome do Pokemon:</label>
+                      <p className={styles.tituloinput}>Nome do Pokemon :</p>
                       <input type="text"
                         value={nomesPoke}
                         onChange={(param) => {
@@ -159,7 +161,7 @@ export default function Home() {
                     </section>
 
                     <section className={styles.input}>
-                      <label>Tipo do Pokemon:</label>
+                      <p className={styles.tituloinput}>Tipo do Pokemon :</p>
                       <input type="text"
                         value={tiposPoke}
                         onChange={(param) => {
@@ -170,7 +172,7 @@ export default function Home() {
                       />
                     </section>
                     <section className={styles.input}>
-                      <label>Imagem do Pokemon:</label>
+                      <p className={styles.tituloinput}>Imagem do Pokemon :</p>
                       <input type="text"
                         value={imagePoke}
                         onChange={(param) => {
@@ -183,19 +185,18 @@ export default function Home() {
                     <section className={styles.btn}>
                       {
                         show && (
-                          <button onClick={editCadastro} className={styles.btn}>Editar</button>
+                          <button onClick={editCadastro} className={styles.btn2}>Editar</button>
                         )
                       }
                       {
                         !show && (
-                          <button onClick={showCadastros} className={styles.btn}>Register</button>
+                          <button onClick={showCadastros} className={styles.btn1}>Registrar</button>
                         )
                       }
                     </section>
                   </article>
 
                   <article className={styles.cadastrolista}>
-                    <h2>Lista</h2>
                     <section className={styles.seccadastros}>
                       {
                         lista.map((cadastro) => (
@@ -270,7 +271,7 @@ export default function Home() {
 
                 <ul className={styles.PokemonList}>
                   {allPokemons.map((pokemon, index) => (
-                    <Card name={pokemon.name} image={pokemon.sprite} types={pokemon.types} index={index}/>
+                    <Card name={pokemon.name} image={pokemon.sprite} types={pokemon.types} index={index} />
                   ))}
                 </ul>
               </>
