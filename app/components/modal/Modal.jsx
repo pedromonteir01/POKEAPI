@@ -2,7 +2,7 @@ import React from 'react';
 import estilo from './modal.module.css';
 import Pokedex from '../pokedex/Pokedex';
 
-const Modal = ({ isOpen, onClose, pokemons, index, id, nex, previous}) => {
+const Modal = ({ isOpen, onClose, pokemons, index, id, nex, previous, quantity}) => {
   if (!isOpen) {
     return null;
   } 
@@ -24,7 +24,7 @@ const Modal = ({ isOpen, onClose, pokemons, index, id, nex, previous}) => {
             </button>
           </div>
           
-        <Pokedex image={pokemon.sprite} name={pokemon.name} description={pokemon.types} index={index} nex={nex} previous={previous}/>
+        <Pokedex image={pokemon.sprite} name={pokemon.name} description={pokemon.types} index={index} nex={nex} previous={previous} quantity={quantity}/>
 
         </div>
       </div>

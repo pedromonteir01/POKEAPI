@@ -1,6 +1,9 @@
+'use client'
+import { useState } from 'react'
 import styles from './pokedex.module.css'
 
-const Pokedex = ({ image, index, name, description, previous, nex}) => {
+const Pokedex = ({ image, index, name, description, previous, nex, quantity}) => {
+
     return (
         <div className={styles.divPoke}>
             <img className={styles.pokemon} src={image} alt="pokemon-image" />
@@ -11,20 +14,33 @@ const Pokedex = ({ image, index, name, description, previous, nex}) => {
             <p className={styles.description}>
                 {description.join(', git')}
             </p>
-            <div className={styles.buttons}>
                 {
-                    index >= 1 ? (
-                        <button className={styles.button} onClick={previous}>Prev &lt;</button>
-
+                    index >= 1 && quantity > index + 1 ? (
+                        <div className={styles.buttons}>
+                            <button className={styles.button} onClick={previous}>Prev &lt;</button>
+                            <button className={styles.button} onClick={nex}>Next &gt;</button>  
+                        </div>
                     ) : (
-                        null
+                        index < 1 ? (
+                            <div className={styles.buttons}>
+                                <button className={styles.button} onClick={nex}>Next &gt;</button>  
+                            </div>
+                        ) : (
+                            index + 1 ==  quantity ? (
+                                <div className={styles.buttons}>
+                                    <button className={styles.button} onClick={previous}>Prev &lt;</button>
+                                </div>
+                            ) : (
+                                null
+                            )
+                        )
                     )
                 }
-                <button className={styles.button} onClick={nex}>Next &gt;</button>
-            </div>
+
             <img className={styles.pokedex} src="/pokedex.png" alt="pokedex" />
         </div>
     );
 }
 
 export default Pokedex;
+

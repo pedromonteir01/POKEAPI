@@ -17,6 +17,7 @@ export default function Home() {
   //cadastrar
   const [register, setRegister] = useState(false);
 
+  //verificadores
   const [allPokemons, setAllPokemons] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [quantity, setQuantity] = useState(32);
@@ -86,7 +87,7 @@ export default function Home() {
   const [tiposPoke, setTiposPoke] = useState(empty);
   const [imagePoke, setImagePoke] = useState(empty);
   const [pokeId, setPokeId] = useState(null);
-  const [index, setIndex] = useState(null);
+  const [position, setPosition] = useState(null);
 
   const [show, setShow] = useState(false);
 
@@ -104,7 +105,7 @@ export default function Home() {
   }
 
 
-  const showPokedex = (id) => {
+  const showPokedex = (id, index) => {
 
     const poke = allPokemons.find((pokemon) => pokemon.id == id);
 
@@ -112,7 +113,7 @@ export default function Home() {
     setPokeName(poke.name);
     setPokeType(poke.type);
     setPokeImg(poke.sprite);
-    setIndex(index);
+    setPosition(index)
     setPokeId(id)
     isOpen();
 
@@ -128,6 +129,7 @@ export default function Home() {
 
   const next = () => {
     setPokeId(pokeId + 1);
+    setPosition(position + 1)
   }
 
   const previous = () => {
@@ -135,6 +137,7 @@ export default function Home() {
       return 1;
     } else {
       setPokeId(pokeId - 1);
+      setPosition(position - 1);
     }
   }
 
@@ -254,7 +257,7 @@ export default function Home() {
                 <ul className={styles.PokemonList}>
                   {allPokemons.map((pokemon, index) => (
 
-                    <Card name={pokemon.name} image={pokemon.sprite} types={pokemon.types} index={index} show={() => showPokedex(pokemon.id)} />
+                    <Card name={pokemon.name} image={pokemon.sprite} types={pokemon.types} index={index} show={() => showPokedex(pokemon.id, index)} />
 
                   ))}
                 </ul>
@@ -262,7 +265,7 @@ export default function Home() {
             )}
             {
               showModal ? (
-                <Modal isOpen={isOpen} onClose={onClose} pokemons={allPokemons} index={index} id={pokeId} nex={next} previous={previous}/>
+                <Modal isOpen={isOpen} onClose={onClose} pokemons={allPokemons} index={position} id={pokeId} nex={next} previous={previous} quantity={quantity}/>
               ) : (
                 null
               )
