@@ -149,14 +149,14 @@ export default function Home() {
           <div>
             <>
               <main>
-                <button onClick={listPokemon} className={styles.btn1}>VOLTAR</button>
+                <button onClick={listPokemon} className={styles.btn1}>POKEDEX</button>
                 <div className={styles.main}>
 
                   <article className={styles.login}>
 
-                    <h1 className={styles.titulo}>Cadastro</h1>
+                    <h1 className={styles.titulo}>Register</h1>
                     <section className={styles.input}>
-                      <p className={styles.tituloinput}>Nome do Pokemon :</p>
+                      <p className={styles.tituloinput}>NAME :</p>
                       <input type="text"
                         value={nomesPoke}
                         onChange={(param) => {
@@ -167,7 +167,7 @@ export default function Home() {
                     </section>
 
                     <section className={styles.input}>
-                      <p className={styles.tituloinput}>Tipo do Pokemon :</p>
+                      <p className={styles.tituloinput}>TYPE :</p>
                       <input type="text"
                         value={tiposPoke}
                         onChange={(param) => {
@@ -178,7 +178,7 @@ export default function Home() {
                       />
                     </section>
                     <section className={styles.input}>
-                      <p className={styles.tituloinput}>Imagem do Pokemon :</p>
+                      <p className={styles.tituloinput}>SPRITE :</p>
                       <input type="text"
                         value={imagePoke}
                         onChange={(param) => {
@@ -191,12 +191,12 @@ export default function Home() {
                     <section className={styles.btn}>
                       {
                         show && (
-                          <button onClick={editCadastro} className={styles.btn2}>Editar</button>
+                          <button onClick={editCadastro} className={styles.btn2}>EDIT</button>
                         )
                       }
                       {
                         !show && (
-                          <button onClick={showCadastros} className={styles.btn1}>Registrar</button>
+                          <button onClick={showCadastros} className={styles.btn1}>REGISTER</button>
                         )
                       }
                     </section>
@@ -207,10 +207,10 @@ export default function Home() {
           </div>
         ) : (
           <>
-            <h1>Pokédex</h1>
+            <h1>POKEDEX</h1>
 
             <div className={styles.Quantity}>
-              <label htmlFor="quantity">Quantidade de Pokémons:</label>
+              <label htmlFor="quantity" style={{fontSize: 20}}>NUMBER OF POKEMON:</label>
               <input
                 type="number"
                 id="quantity"
@@ -219,10 +219,10 @@ export default function Home() {
                 max="1000"
                 value={quantity}
                 onChange={(event) => setQuantity(event.target.value)}
+                className={styles.inQuantity}
               />
             </div>
 
-            <button onClick={registerPokemon}>Register</button>
 
 
             {isLoading ? (
@@ -242,8 +242,10 @@ export default function Home() {
                 <p style={{ color: 'red' }}>LOADING...</p>
               </div>
             ) : (
-              <>
+              <div className={styles.rest}>
                 <h1>REGISTERED POKEMONS</h1>
+                <button className={styles.registerbtn} onClick={registerPokemon}>Register</button>
+
                 <ul className={styles.PokemonList}>
                   {
                     pokedex.regisered.map((pokemon, index) => (
@@ -261,7 +263,7 @@ export default function Home() {
 
                   ))}
                 </ul>
-              </>
+              </div>
             )}
             {
               showModal ? (
