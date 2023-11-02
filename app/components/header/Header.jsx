@@ -3,15 +3,24 @@ import Link from 'next/link'
 import Image from 'next/image'
 import styles from '@/app/components/header/Header.module.css'
 
-function Header() {
+function Header({setTrue}) {
+
+  const register = () => {
+    setTrue(true);
+  }
+
+  const list = () => {
+    setTrue(false);
+  }
+
   return (
     <div className={styles.header}>
         <div>
-        <Image src={'/bola.webp'} width={70} height={70} ></Image>
+        <Image src={'/bola.webp'} width={70} height={70}/>
         </div>
         <div>
-            <Link className={styles.links} href={'/'}>Home</Link>
-            <Link className={styles.links} href={''}>Cadastro</Link>
+            <p className={styles.links} onClick={list}>Home</p>
+            <p className={styles.links} onClick={register}>Register</p>
         </div>
     </div>
   )

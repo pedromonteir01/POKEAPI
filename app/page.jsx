@@ -143,7 +143,7 @@ export default function Home() {
 
   return (
     <div className={styles.App}>
-      <Header />
+      <Header setTrue={setRegister}/>
       {
         register ? (
           <div>

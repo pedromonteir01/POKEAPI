@@ -12,7 +12,7 @@ const Pokedex = ({ image, index, name, description, previous, nex, quantity}) =>
                 <span className={styles.pokeName}> - {name}</span>
             </h3>
             <p className={styles.description}>
-                {description.join(', git')}
+                {description.join(', ')}
             </p>
                 {
                     index >= 1 && quantity > index + 1 ? (
