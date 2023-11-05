@@ -9,6 +9,8 @@ import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import { Oval } from 'react-loader-spinner';
 import Modal from './components/modal/Modal';
+import Badge from 'react-bootstrap/Badge';
+import { Popup } from './components/popup/Popup';
 
 const pokedex = new ListaPokemon();
 
@@ -16,6 +18,22 @@ export default function Home() {
 
   //cadastrar
   const [register, setRegister] = useState(false);
+
+  //POPUP
+  const [showPopup, setShowPopup] = useState(false);
+  const [showMesage, setShowMessage] = useState('');
+  const [showType, setShowType] = useState('');
+
+  function handleShowPopup(message, type, time) {
+    setShowPopup(true);
+    setShowMessage(message);
+    setShowType(type);
+
+    setTimeout(() => {
+        setShowPopup(false) } , 
+        time);
+    }
+
 
   //verificadores
   const [allPokemons, setAllPokemons] = useState([]);
@@ -46,13 +64,15 @@ export default function Home() {
               sprite: response.data.sprites.front_default,
               types: response.data.types.map((type) => type.type.name),
               id: response.data.id,
+              abilities: response.data.abilities,
+              shiny: response.data.sprites.front_shiny,
+              varieties: await axios.get(response.data.species.url)
             };
             pokemonDetails.push(pokemonData);
           } catch (error) {
             console.error('Error fetching Pokemon details:', error);
           }
         }
-
         // O Promise.all espera que todas as promises sejam resolvidas para continuar.
         await Promise.all(data.map(fetchPokemonDetails));
 
@@ -68,7 +88,7 @@ export default function Home() {
     fetchPokemons();
   }, [quantity]);
 
-  console.log('allPokemons', allPokemons);
+  // BADGE TYPES
 
 
   const registerPokemon = () => {
@@ -94,6 +114,7 @@ export default function Home() {
   const showCadastros = () => {
     const separadinho = tiposPoke.split(',');
     if (nomesPoke.trim() == '' || tiposPoke.trim() == '' || imagePoke.trim() == '') {
+      handleShowPopup('Error! Fill in all fields', 'error', 3000)
     } else {
       const pokemon = new Pokemon(nomesPoke, separadinho, imagePoke);
       pokedex.addRegistered(pokemon);
@@ -104,6 +125,7 @@ export default function Home() {
     }
   }
 
+  //config pokedex
 
   const showPokedex = (id, index) => {
 
@@ -140,6 +162,13 @@ export default function Home() {
       setPosition(position - 1);
     }
   }
+
+  //mega func
+
+  const [megaInfo, setMegaInfo] = useState([])
+
+
+
 
   return (
     <div className={styles.App}>
@@ -201,6 +230,11 @@ export default function Home() {
                       }
                     </section>
                   </article>
+                  {
+                    showPopup && (
+                      <Popup msg={showMesage} type={showType}/>
+                    )
+                  }
                 </div>
               </main>
             </>
@@ -254,12 +288,11 @@ export default function Home() {
                   }
                 </ul>
 
-                <h1>POKEMONS POKEDEX</h1>
+                <h1 style={{margin: 15}}>POKEMONS POKEDEX</h1>
 
                 <ul className={styles.PokemonList}>
                   {allPokemons.map((pokemon, index) => (
-
-                    <Card name={pokemon.name} image={pokemon.sprite} types={pokemon.types} index={index} show={() => showPokedex(pokemon.id, index)} />
+                    <Card name={pokemon.name} image={pokemon.sprite} types={pokemon.types} index={index} show={() => showPokedex(pokemon.id, index)} />                  
 
                   ))}
                 </ul>
