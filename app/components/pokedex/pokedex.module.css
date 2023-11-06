@@ -21,7 +21,7 @@
     position: absolute;
     transform: translate(-63%, 20%);
     left: 58%;
-    top: 20%;
+    top: 21%;
     padding: 0.25rem;
     border: 2px solid #000;
     border-radius: 5px;
@@ -52,18 +52,44 @@
     box-shadow: -2px 3px 0 #222, -4px 6px 0 #000;
 }
 
+.megax {
+    position: relative;
+    transform: translate(-63%, 0%);
+    left: 60%;
+    padding: 0.15rem;
+    border: 2px solid #000;
+    border-radius: 5px;
+    font-size: clamp(8px, 5vw, 1rem);
+    font-weight: 400;
+    color: white;
+    background-color: #444;
+    box-shadow: -2px 3px 0 #222, -4px 6px 0 #000;
+}
+
+.megay {
+    position: relative;
+    transform: translate(-63%, 0%);
+    left: 60%;
+    padding: 0.15rem;
+    border: 2px solid #000;
+    border-radius: 5px;
+    font-size: clamp(8px, 5vw, 1rem);
+    font-weight: 400;
+    color: white;
+    background-color: #444;
+    box-shadow: -2px 3px 0 #222, -4px 6px 0 #000;
+}
+
 .mega:active {
     box-shadow: inset -4px 4px 0 #222;
     font-size: 0.9rem;
 }
 
 
-.btns_ {
+.xy {
     position: absolute;
-    bottom: 80%;
-    left: 31%;
-    width: 65%;
-    transform: translate(-17%, 0);
+    bottom: 78.5%;
+    left: 55%;
     display: flex;
     flex-direction: column;
 }

@@ -11,6 +11,7 @@ import { Oval } from 'react-loader-spinner';
 import Modal from './components/modal/Modal';
 import Badge from 'react-bootstrap/Badge';
 import { Popup } from './components/popup/Popup';
+import { FileUploader } from './components/uploadBtn/UploadBtn';
 
 const pokedex = new ListaPokemon();
 
@@ -113,7 +114,7 @@ export default function Home() {
 
   const showCadastros = () => {
     const separadinho = tiposPoke.split(',');
-    if (nomesPoke.trim() == '' || tiposPoke.trim() == '' || imagePoke.trim() == '') {
+    if (nomesPoke.trim() == '' || tiposPoke.trim() == '') {
       handleShowPopup('Error! Fill in all fields', 'error', 3000)
     } else {
       const pokemon = new Pokemon(nomesPoke, separadinho, imagePoke);
@@ -163,13 +164,6 @@ export default function Home() {
     }
   }
 
-  //mega func
-
-  const [megaInfo, setMegaInfo] = useState([])
-
-
-
-
   return (
     <div className={styles.App}>
       <Header setTrue={setRegister}/>
@@ -200,7 +194,7 @@ export default function Home() {
                       <input type="text"
                         value={tiposPoke}
                         onChange={(param) => {
-                          setTiposPoke(param.target.value);
+                        setTiposPoke(param.target.value);
 
                         }}
                         className={styles.inform}
@@ -208,12 +202,13 @@ export default function Home() {
                     </section>
                     <section className={styles.input}>
                       <p className={styles.tituloinput}>SPRITE :</p>
-                      <input type="text"
-                        value={imagePoke}
-                        onChange={(param) => {
-                          setImagePoke(param.target.value);
-                        }}
-                        className={styles.inform}
+                      <input
+                      type='text'
+                      value={imagePoke}
+                      onChange={(param) => {
+                        setImagePoke(param.target.value);
+                      }}
+                      className={styles.inform}
                       />
                     </section>
 
@@ -283,7 +278,7 @@ export default function Home() {
                 <ul className={styles.PokemonList}>
                   {
                     pokedex.regisered.map((pokemon, index) => (
-                      <Card name={pokemon.name} image={pokemon.sprite} types={pokemon.types} index={index} />
+                      <Card name={pokemon.name} image={pokemon.image} types={pokemon.types} index={index} />
                     ))
                   }
                 </ul>

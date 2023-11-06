@@ -7,8 +7,8 @@ const Card = ({ name, image, types, index, show }) => {
     return (
         <li key={index} className={styles.PokemonItem} onClick={show}>
             <h2 className={styles.PokemonName}>{name}</h2>
-            <img src={image} alt={name} className={styles.PokemonImage} />
-            <p className={styles.PokemonTypes}>Tipos: {types.join(', ')}</p>
+            <img src={image} alt={name} className={styles.PokemonImage}/>
+            <p className={styles.PokemonTypes}>Types: {types.join(', ')}</p>
         </li>
     );
 }
