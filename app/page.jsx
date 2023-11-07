@@ -2,7 +2,7 @@
 import styles from './page.module.css'
 import { useEffect, useState } from 'react';
 import ListaPokemon from '@/models/listapokemon';
-import axios from 'axios';
+import axios, { all } from 'axios';
 import Pokemon from '@/models/pokemon';
 import Card from './components/card/Card';
 import Header from './components/header/Header';
@@ -95,9 +95,12 @@ export default function Home() {
   const registerPokemon = () => {
     setRegister(true);
   };
+
   const listPokemon = () => {
     setRegister(false);
-  }
+  };
+
+  console.log(pokedex.lista);
 
   //teste
 
