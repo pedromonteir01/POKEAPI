@@ -167,6 +167,27 @@ export default function Home() {
     }
   }
 
+  const [newList, setNewList] = useState([]);
+
+  const delet = (id) => {
+    allPokemons.map((pokemon) => (
+      setNewList(pokedex.lista.fill(pokemon))
+    ))
+    console.log('antes:' + pokedex.lista);
+    const pokemon = pokedex.getById(id);
+    console.log(pokemon);
+    pokedex.deletePokemon(pokemon);
+    console.log('depois:' + pokedex.lista);
+    setNewList(pokedex.lista);
+    setAllPokemons(newList);
+    console.log(newList);
+    console.log(allPokemons);
+  }
+
+  const edit = () => {
+
+  }
+
   return (
     <div className={styles.App}>
       <Header setTrue={setRegister}/>
@@ -290,7 +311,7 @@ export default function Home() {
 
                 <ul className={styles.PokemonList}>
                   {allPokemons.map((pokemon, index) => (
-                    <Card name={pokemon.name} image={pokemon.sprite} types={pokemon.types} index={index} setRegister={setRegister} pokemons={allPokemons} modelPokemons={pokedex} id={pokemon.id} show={() => showPokedex(pokemon.id, index)} />
+                    <Card name={pokemon.name} image={pokemon.sprite} types={pokemon.types} index={index} setRegister={setRegister} pokemons={allPokemons} modelPokemons={pokedex} id={pokemon.id} show={() => showPokedex(pokemon.id, index)} delet={() => delet(pokemon.id)}/>
                   ))}
                 </ul>
               </div>
