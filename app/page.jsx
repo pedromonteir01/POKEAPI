@@ -112,6 +112,9 @@ export default function Home() {
   const [position, setPosition] = useState(null);
 
 
+  const [show, setShow] = useState(false);
+
+
   const showCadastros = () => {
     const separadinho = tiposPoke.split(',');
     if (nomesPoke.trim() == '' || tiposPoke.trim() == '') {
