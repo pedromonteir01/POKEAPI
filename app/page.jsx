@@ -10,7 +10,6 @@ import Footer from './components/footer/Footer';
 import { Oval } from 'react-loader-spinner';
 import Modal from './components/modal/Modal';
 import { Popup } from './components/popup/Popup';
-import { FileUploader } from './components/uploadBtn/UploadBtn';
 
 const pokedex = new ListaPokemon();
 
@@ -43,10 +42,6 @@ export default function Home() {
   //pokedex state
   const [showModal, setShowModal] = useState(false);
 
-  //pokemons data by prop
-  const [pokeName, setPokeName] = useState('');
-  const [pokeType, setPokeType] = useState('');
-  const [pokeImg, setPokeImg] = useState('')
 
   useEffect(() => {
     async function fetchPokemons() {
@@ -70,7 +65,7 @@ export default function Home() {
             };
             pokemonDetails.push(pokemonData);
           } catch (error) {
-            console.error('Error fetching Pokemon details:', error);
+            <Popup msg={`ERROR API, ${error}`} type={'error'}/>
           }
         }
         // O Promise.all espera que todas as promises sejam resolvidas para continuar.
@@ -80,8 +75,8 @@ export default function Home() {
         setAllPokemons(pokedex.getAll(quantity));
         setIsLoading(false);
       } catch (error) {
-        console.error('Error fetching data:', error);
         setIsLoading(false);
+        <Popup msg={`ERROR API, ${error}`} type={'error'}/>
       }
     }
 
@@ -103,7 +98,6 @@ export default function Home() {
 
   //teste
 
-  const [aux, setAux] = useState(null);
 
   let empty = '';
   const [nomesPoke, setNomePoke] = useState(empty);
@@ -112,7 +106,6 @@ export default function Home() {
   const [pokeId, setPokeId] = useState(null);
   const [position, setPosition] = useState(null);
 
-  const [show, setShow] = useState(false);
 
   const showCadastros = () => {
     const separadinho = tiposPoke.split(',');
@@ -125,6 +118,7 @@ export default function Home() {
       setTiposPoke(empty);
       setImagePoke(empty);
       setRegister(false);
+      <Popup msg={`POKEMON REGISTERED`} type={'success'}/>
     }
   }
 
@@ -164,27 +158,6 @@ export default function Home() {
       setPokeId(pokeId - 1);
       setPosition(position - 1);
     }
-  }
-
-  const [newList, setNewList] = useState([]);
-
-  const delet = (id) => {
-    allPokemons.map((pokemon) => (
-      setNewList(pokedex.lista.fill(pokemon))
-    ))
-    console.log('antes:' + pokedex.lista);
-    const pokemon = pokedex.getById(id);
-    console.log(pokemon);
-    pokedex.deletePokemon(pokemon);
-    console.log('depois:' + pokedex.lista);
-    setNewList(pokedex.lista);
-    setAllPokemons(newList);
-    console.log(newList);
-    console.log(allPokemons);
-  }
-
-  const edit = () => {
-
   }
 
   return (
