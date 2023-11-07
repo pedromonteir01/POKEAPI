@@ -9,7 +9,6 @@ import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import { Oval } from 'react-loader-spinner';
 import Modal from './components/modal/Modal';
-import Badge from 'react-bootstrap/Badge';
 import { Popup } from './components/popup/Popup';
 import { FileUploader } from './components/uploadBtn/UploadBtn';
 

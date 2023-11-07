@@ -5,22 +5,14 @@ import styles from '@/app/components/header/Header.module.css'
 
 function Header({setTrue}) {
 
-  const register = () => {
-    setTrue(true);
-  }
-
-  const list = () => {
-    setTrue(false);
-  }
-
   return (
     <div className={styles.header}>
         <div>
-        <Image src={'/bola.webp'} width={70} height={70}/>
+        <Image src={'/gira.gif'} width={100} height={100}/>
         </div>
         <div>
-            <p className={styles.links} onClick={list}>Home</p>
-            <p className={styles.links} onClick={register}>Register</p>
+            <Link className={styles.links} href={'/'}>Home</Link>
+            <Link className={styles.links} href={'./LinkPage'}>Link</Link>
         </div>
     </div>
   )
