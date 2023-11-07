@@ -179,9 +179,7 @@ export default function Home() {
     pokedex.deletePokemon(pokemon);
     console.log('depois:' + pokedex.lista);
     setNewList(pokedex.lista);
-    setAllPokemons(newList);
-    console.log(newList);
-    console.log(allPokemons);
+    setAllPokemons();
   }
 
   const edit = () => {
