@@ -6,7 +6,7 @@
 
 .pokedex {
     width: 100%;
-    max-width: 425px;
+    max-width: 25.5rem;
 }
 
 .pokemon {
@@ -17,6 +17,82 @@
     height: 18%;
 }
 
+.shiny {
+    position: absolute;
+    transform: translate(-63%, 20%);
+    left: 58%;
+    top: 21%;
+    padding: 0.25rem;
+    border: 2px solid #000;
+    border-radius: 5px;
+    font-size: clamp(8px, 5vw, 1rem);
+    font-weight: 400;
+    color: white;
+    background-color: #444;
+    box-shadow: -2px 3px 0 #222, -4px 6px 0 #000;
+}
+
+.shiny:active {
+    box-shadow: inset -4px 4px 0 #222;
+    font-size: 0.9rem;
+}
+
+.mega {
+    position: absolute;
+    transform: translate(-63%, 0%);
+    left: 58%;
+    top: 14%;
+    padding: 0.25rem;
+    border: 2px solid #000;
+    border-radius: 5px;
+    font-size: clamp(8px, 5vw, 1rem);
+    font-weight: 400;
+    color: white;
+    background-color: #444;
+    box-shadow: -2px 3px 0 #222, -4px 6px 0 #000;
+}
+
+.megax {
+    position: relative;
+    transform: translate(-63%, 0%);
+    left: 60%;
+    padding: 0.15rem;
+    border: 2px solid #000;
+    border-radius: 5px;
+    font-size: clamp(8px, 5vw, 1rem);
+    font-weight: 400;
+    color: white;
+    background-color: #444;
+    box-shadow: -2px 3px 0 #222, -4px 6px 0 #000;
+}
+
+.megay {
+    position: relative;
+    transform: translate(-63%, 0%);
+    left: 60%;
+    padding: 0.15rem;
+    border: 2px solid #000;
+    border-radius: 5px;
+    font-size: clamp(8px, 5vw, 1rem);
+    font-weight: 400;
+    color: white;
+    background-color: #444;
+    box-shadow: -2px 3px 0 #222, -4px 6px 0 #000;
+}
+
+.mega:active {
+    box-shadow: inset -4px 4px 0 #222;
+    font-size: 0.9rem;
+}
+
+
+.xy {
+    position: absolute;
+    bottom: 78.5%;
+    left: 55%;
+    display: flex;
+    flex-direction: column;
+}
 .pokemonData{
     position: absolute;
     font-weight: 600;
@@ -44,9 +120,22 @@
     box-shadow: -3px 4px 0 #888, -5px 7px 0 #333;
 }
 
+.abilities {
+    position: absolute;
+    width: 20%;
+    top: 72%;
+    left: 39%;
+    margin: 5px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    font-size: clamp(8px, 5vw, 1rem);
+    background-color: white;
+    box-shadow: -3px 4px 0 #888, -5px 7px 0 #333;
+}
+
 .buttons {
     position: absolute;
-    bottom: 10%;
+    bottom: 6%;
     left: 50%;
     width: 65%;
     transform: translate(-17%, 0);
@@ -56,7 +145,7 @@
   
   .button {
     width: 14%;
-    padding: 4%;
+    padding: 3%;
     border: 2px solid #000;
     border-radius: 5px;
     font-size: clamp(8px, 5vw, 1rem);

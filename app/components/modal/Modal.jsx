@@ -1,15 +1,15 @@
-import React from 'react';
+'use client'
+import React, { useEffect, useState } from 'react';
 import estilo from './modal.module.css';
 import Pokedex from '../pokedex/Pokedex';
+import axios from 'axios';
 
-const Modal = ({ isOpen, onClose, pokemons, index, id, nex, previous, quantity}) => {
+const Modal = ({ isOpen, onClose, pokemons, index, id, nex, previous, quantity }) => {
   if (!isOpen) {
     return null;
   } 
 
   const pokemon = pokemons.find((pokemon) => pokemon.id == id);
-  console.log(pokemon);
-  console.log(id);
 
   return (
     <>
@@ -24,7 +24,7 @@ const Modal = ({ isOpen, onClose, pokemons, index, id, nex, previous, quantity})
             </button>
           </div>
           
-        <Pokedex image={pokemon.sprite} name={pokemon.name} description={pokemon.types} index={index} nex={nex} previous={previous} quantity={quantity}/>
+        <Pokedex image={pokemon.sprite} name={pokemon.name} description={pokemon.types} index={index} nex={nex} previous={previous} quantity={quantity} abilities={pokemon.abilities} shiny={pokemon.shiny} varieties={pokemon.varieties.data.varieties}/>
 
         </div>
       </div>

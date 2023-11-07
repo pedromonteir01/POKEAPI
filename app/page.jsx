@@ -2,13 +2,16 @@
 import styles from './page.module.css'
 import { useEffect, useState } from 'react';
 import ListaPokemon from '@/models/listapokemon';
-import axios from 'axios';
+import axios, { all } from 'axios';
 import Pokemon from '@/models/pokemon';
 import Card from './components/card/Card';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import { Oval } from 'react-loader-spinner';
 import Modal from './components/modal/Modal';
+import Badge from 'react-bootstrap/Badge';
+import { Popup } from './components/popup/Popup';
+import { FileUploader } from './components/uploadBtn/UploadBtn';
 
 const pokedex = new ListaPokemon();
 
@@ -16,6 +19,22 @@ export default function Home() {
 
   //cadastrar
   const [register, setRegister] = useState(false);
+
+  //POPUP
+  const [showPopup, setShowPopup] = useState(false);
+  const [showMesage, setShowMessage] = useState('');
+  const [showType, setShowType] = useState('');
+
+  function handleShowPopup(message, type, time) {
+    setShowPopup(true);
+    setShowMessage(message);
+    setShowType(type);
+
+    setTimeout(() => {
+        setShowPopup(false) } , 
+        time);
+    }
+
 
   //verificadores
   const [allPokemons, setAllPokemons] = useState([]);
@@ -46,13 +65,15 @@ export default function Home() {
               sprite: response.data.sprites.front_default,
               types: response.data.types.map((type) => type.type.name),
               id: response.data.id,
+              abilities: response.data.abilities,
+              shiny: response.data.sprites.front_shiny,
+              varieties: await axios.get(response.data.species.url)
             };
             pokemonDetails.push(pokemonData);
           } catch (error) {
             console.error('Error fetching Pokemon details:', error);
           }
         }
-
         // O Promise.all espera que todas as promises sejam resolvidas para continuar.
         await Promise.all(data.map(fetchPokemonDetails));
 
@@ -68,15 +89,18 @@ export default function Home() {
     fetchPokemons();
   }, [quantity]);
 
-  console.log('allPokemons', allPokemons);
+  // BADGE TYPES
 
 
   const registerPokemon = () => {
     setRegister(true);
   };
+
   const listPokemon = () => {
     setRegister(false);
-  }
+  };
+
+  console.log(pokedex.lista);
 
   //teste
 
@@ -93,7 +117,8 @@ export default function Home() {
 
   const showCadastros = () => {
     const separadinho = tiposPoke.split(',');
-    if (nomesPoke.trim() == '' || tiposPoke.trim() == '' || imagePoke.trim() == '') {
+    if (nomesPoke.trim() == '' || tiposPoke.trim() == '') {
+      handleShowPopup('Error! Fill in all fields', 'error', 3000)
     } else {
       const pokemon = new Pokemon(nomesPoke, separadinho, imagePoke);
       pokedex.addRegistered(pokemon);
@@ -104,6 +129,7 @@ export default function Home() {
     }
   }
 
+  //config pokedex
 
   const showPokedex = (id, index) => {
 
@@ -143,20 +169,20 @@ export default function Home() {
 
   return (
     <div className={styles.App}>
-      <Header />
+      <Header setTrue={setRegister}/>
       {
         register ? (
           <div>
             <>
               <main>
-                <button onClick={listPokemon} className={styles.btn1}>VOLTAR</button>
+                <button onClick={listPokemon} className={styles.btn1}>POKEDEX</button>
                 <div className={styles.main}>
 
                   <article className={styles.login}>
 
-                    <h1 className={styles.titulo}>Cadastro</h1>
+                    <h1 className={styles.titulo}>Register</h1>
                     <section className={styles.input}>
-                      <p className={styles.tituloinput}>Nome do Pokemon :</p>
+                      <p className={styles.tituloinput}>NAME :</p>
                       <input type="text"
                         value={nomesPoke}
                         onChange={(param) => {
@@ -167,50 +193,56 @@ export default function Home() {
                     </section>
 
                     <section className={styles.input}>
-                      <p className={styles.tituloinput}>Tipo do Pokemon :</p>
+                      <p className={styles.tituloinput}>TYPE :</p>
                       <input type="text"
                         value={tiposPoke}
                         onChange={(param) => {
-                          setTiposPoke(param.target.value);
+                        setTiposPoke(param.target.value);
 
                         }}
                         className={styles.inform}
                       />
                     </section>
                     <section className={styles.input}>
-                      <p className={styles.tituloinput}>Imagem do Pokemon :</p>
-                      <input type="text"
-                        value={imagePoke}
-                        onChange={(param) => {
-                          setImagePoke(param.target.value);
-                        }}
-                        className={styles.inform}
+                      <p className={styles.tituloinput}>SPRITE :</p>
+                      <input
+                      type='text'
+                      value={imagePoke}
+                      onChange={(param) => {
+                        setImagePoke(param.target.value);
+                      }}
+                      className={styles.inform}
                       />
                     </section>
 
                     <section className={styles.btn}>
                       {
                         show && (
-                          <button onClick={editCadastro} className={styles.btn2}>Editar</button>
+                          <button onClick={editCadastro} className={styles.btn2}>EDIT</button>
                         )
                       }
                       {
                         !show && (
-                          <button onClick={showCadastros} className={styles.btn1}>Registrar</button>
+                          <button onClick={showCadastros} className={styles.btn1}>REGISTER</button>
                         )
                       }
                     </section>
                   </article>
+                  {
+                    showPopup && (
+                      <Popup msg={showMesage} type={showType}/>
+                    )
+                  }
                 </div>
               </main>
             </>
           </div>
         ) : (
           <>
-            <h1>Pokédex</h1>
+            <h1>POKEDEX</h1>
 
             <div className={styles.Quantity}>
-              <label htmlFor="quantity">Quantidade de Pokémons:</label>
+              <label htmlFor="quantity" style={{fontSize: 20}}>NUMBER OF POKEMON:</label>
               <input
                 type="number"
                 id="quantity"
@@ -219,10 +251,10 @@ export default function Home() {
                 max="1000"
                 value={quantity}
                 onChange={(event) => setQuantity(event.target.value)}
+                className={styles.inQuantity}
               />
             </div>
 
-            <button onClick={registerPokemon}>Register</button>
 
 
             {isLoading ? (
@@ -242,26 +274,26 @@ export default function Home() {
                 <p style={{ color: 'red' }}>LOADING...</p>
               </div>
             ) : (
-              <>
+              <div className={styles.rest}>
                 <h1>REGISTERED POKEMONS</h1>
+                <button className={styles.registerbtn} onClick={registerPokemon}>Register</button>
+
                 <ul className={styles.PokemonList}>
                   {
                     pokedex.regisered.map((pokemon, index) => (
-                      <Card name={pokemon.name} image={pokemon.sprite} types={pokemon.types} index={index} />
+                      <Card name={pokemon.name} image={pokemon.image} types={pokemon.types} index={index} />
                     ))
                   }
                 </ul>
 
-                <h1>POKEMONS POKEDEX</h1>
+                <h1 style={{margin: 15}}>POKEMONS POKEDEX</h1>
 
                 <ul className={styles.PokemonList}>
                   {allPokemons.map((pokemon, index) => (
-
                     <Card name={pokemon.name} image={pokemon.sprite} types={pokemon.types} index={index} setRegister={setRegister} pokemons={allPokemons} modelPokemons={pokedex} id={pokemon.id} show={() => showPokedex(pokemon.id, index)} />
-
                   ))}
                 </ul>
-              </>
+              </div>
             )}
             {
               showModal ? (

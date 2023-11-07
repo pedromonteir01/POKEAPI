@@ -14,6 +14,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 2rem;
+    
   }
   
   .PokemonItem {
@@ -21,8 +23,12 @@
     border-radius: 8px;
     padding: 16px;
     margin: 10px;
-    width: 200px;
+    width: 24vw;
     text-align: center;
+    cursor: pointer;
+    box-shadow: 14px 16px 28px -9px rgba(0,0,0,0.75);
+-webkit-box-shadow: 14px 16px 28px -9px rgba(0,0,0,0.75);
+-moz-box-shadow: 14px 16px 28px -9px rgba(0,0,0,0.75);
   }
   
   .PokemonName {
@@ -46,11 +52,24 @@
     align-items: center;
     border: 1px solid #ccc;
     border-radius: 8px;
-    padding: 8px;
-    width: 200px;
+    padding: 2rem;
+    width: 23vw;
     margin: auto;
     text-align: center;
+    box-shadow: 10px 10px 26px 0px rgba(0,0,0,0.75);
+-webkit-box-shadow: 10px 10px 26px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 26px 0px rgba(0,0,0,0.75);
   }
+
+  .inQuantity {
+    width: 90%;
+    padding: 1rem;
+    font-size: x-large;
+    border-radius: 8px;
+    outline: none;
+    border: 2px solid rgb(56, 56, 56);
+  }
+
 .loading {
   display: flex;
   flex-direction: column;
@@ -58,8 +77,12 @@
   justify-content: center;
   height: 100vh;
 }
+
+.rest {
+  margin-top: 2rem;
+}
+
 .tituloinput{
-  font-family: "Pokemon_Solid";
   color: #003dc2;
   font-size: 23px;
   letter-spacing:2px;
@@ -67,39 +90,43 @@
 }
 .titulo{
   font-family: 'Pokemon_Solid';
-  letter-spacing:7px;
+  letter-spacing:8px;
   -webkit-text-stroke-width: 3.5px;
 -webkit-text-stroke-color: #003dc2;
 font-size: 3.5em; color: #fff350;
 }
-.main{
-  height: 99vh;
-}
 
 .login{
-  height: 92vh;
   width: 40vw;
-  background-color: rgba(249, 255, 74, 0.53);
+  height: 100vh;
+  background-color: rgba(249, 255, 74, 0.77);
   border-radius: 20px;
   margin: auto;
   margin-top: 70px;
+  margin-bottom: 2rem;
 
 }
+
+.btn {
+  margin-bottom: 10rem;
+}
+
 .inform{
   width: 22vw;
   height: 5vh;
   border: none;
   border-radius: 5px;
+  padding: 2rem;
+  font-size: large;
 }
 .btn1{
   width: 15vw;
   height: 7.5vh;
   border-radius: 5px;
-  background-color: white;
+  background-color: #003dc2;
   border: none;
   margin-top: 45px;
-  font-family: "Pokemon_Solid";
-  color: #003dc2;
+  color: white;
   font-size: 18px;
   letter-spacing:2px;
 }
@@ -112,6 +139,31 @@ font-size: 3.5em; color: #fff350;
   border: none;
   margin-top: 45px;
   font-size: 18px;
-  font-family: "Pokemon_Solid";
+  letter-spacing:2px;
+  cursor: pointer;
+}
+
+.registerbtn {
+  width: 15vw;
+  height: 7.5vh;
+  border-radius: 5px;
+  background-color: #003dc2;
+  border: none;
+  color: white;
+  font-size: 18px;
   letter-spacing:2px;
 }
+
+.registerbtn:hover {
+  width: 15vw;
+  height: 7.5vh;
+  border-radius: 5px;
+  background-color: #003dc2;
+  color: #fff350;
+  border: none;
+  font-size: 18px;
+  letter-spacing:2px;
+  cursor: pointer;
+}
+
+
