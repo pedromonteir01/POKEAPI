@@ -9,7 +9,6 @@ import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import { Oval } from 'react-loader-spinner';
 import Modal from './components/modal/Modal';
-import Badge from 'react-bootstrap/Badge';
 import { Popup } from './components/popup/Popup';
 import { FileUploader } from './components/uploadBtn/UploadBtn';
 
@@ -39,7 +38,7 @@ export default function Home() {
   //verificadores
   const [allPokemons, setAllPokemons] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [quantity, setQuantity] = useState(32);
+  const [quantity, setQuantity] = useState(12);
 
   //pokedex state
   const [showModal, setShowModal] = useState(false);
@@ -173,14 +172,10 @@ export default function Home() {
     allPokemons.map((pokemon) => (
       setNewList(pokedex.lista.fill(pokemon))
     ))
-    console.log('antes:' + pokedex.lista);
     const pokemon = pokedex.getById(id);
-    console.log(pokemon);
     pokedex.deletePokemon(pokemon);
-    console.log('depois:' + pokedex.lista);
-    setNewList(pokedex.lista);
-    setAllPokemons();
-  }
+    setAllPokemons(pokedex.lista)
+    }
 
   const edit = () => {
 

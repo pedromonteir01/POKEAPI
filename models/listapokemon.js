@@ -38,6 +38,6 @@ export default class ListaPokemon {
     }
 
     deletePokemon(id) {
-      return this.lista.filter((pokemon) => pokemon.id != id)
+      return this.lista = this.lista.filter((pokemon) => pokemon.id != id)
     }
   }
