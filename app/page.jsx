@@ -37,7 +37,12 @@ export default function Home() {
   //verificadores
   const [allPokemons, setAllPokemons] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [quantity, setQuantity] = useState(32);
+  const [quantity, setQuantity] = useState(12);
+
+    //pokemons data by prop
+    const [pokeName, setPokeName] = useState('');
+    const [pokeType, setPokeType] = useState('');
+    const [pokeImg, setPokeImg] = useState('')
 
   //pokedex state
   const [showModal, setShowModal] = useState(false);
