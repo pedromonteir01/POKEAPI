@@ -32,4 +32,12 @@ export default class ListaPokemon {
     getRegistered() {
         return this.regisered;
     }
+
+    getById(id) {
+      return this.lista.find((pokemon) => pokemon.id == id);
+    }
+
+    deletePokemon(id) {
+      return this.lista.filter((pokemon) => pokemon.id != id)
+    }
   }

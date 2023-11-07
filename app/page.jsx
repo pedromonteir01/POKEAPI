@@ -2,7 +2,7 @@
 import styles from './page.module.css'
 import { useEffect, useState } from 'react';
 import ListaPokemon from '@/models/listapokemon';
-import axios from 'axios';
+import axios, { all } from 'axios';
 import Pokemon from '@/models/pokemon';
 import Card from './components/card/Card';
 import Header from './components/header/Header';
@@ -94,9 +94,12 @@ export default function Home() {
   const registerPokemon = () => {
     setRegister(true);
   };
+
   const listPokemon = () => {
     setRegister(false);
-  }
+  };
+
+  console.log(pokedex.lista);
 
   //teste
 
@@ -161,6 +164,27 @@ export default function Home() {
       setPokeId(pokeId - 1);
       setPosition(position - 1);
     }
+  }
+
+  const [newList, setNewList] = useState([]);
+
+  const delet = (id) => {
+    allPokemons.map((pokemon) => (
+      setNewList(pokedex.lista.fill(pokemon))
+    ))
+    console.log('antes:' + pokedex.lista);
+    const pokemon = pokedex.getById(id);
+    console.log(pokemon);
+    pokedex.deletePokemon(pokemon);
+    console.log('depois:' + pokedex.lista);
+    setNewList(pokedex.lista);
+    setAllPokemons(newList);
+    console.log(newList);
+    console.log(allPokemons);
+  }
+
+  const edit = () => {
+
   }
 
   return (
@@ -286,8 +310,7 @@ export default function Home() {
 
                 <ul className={styles.PokemonList}>
                   {allPokemons.map((pokemon, index) => (
-                    <Card name={pokemon.name} image={pokemon.sprite} types={pokemon.types} index={index} show={() => showPokedex(pokemon.id, index)} />                  
-
+                    <Card name={pokemon.name} image={pokemon.sprite} types={pokemon.types} index={index} setRegister={setRegister} pokemons={allPokemons} modelPokemons={pokedex} id={pokemon.id} show={() => showPokedex(pokemon.id, index)} delet={() => delet(pokemon.id)}/>
                   ))}
                 </ul>
               </div>
