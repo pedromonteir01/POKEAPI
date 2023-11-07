@@ -1,0 +1,42 @@
+@font-face {
+    font-family: 'Pokemon_Solid';
+    src: url(/Pokemon_Solid.ttf);
+  }
+
+.titulo{
+    font-family: 'Pokemon_Solid';
+    text-align: center;
+    color: blue;
+    letter-spacing:8px;
+  -webkit-text-stroke-width: 3.5px;
+-webkit-text-stroke-color: #003dc2;
+font-size: 3.5em; color: #fff350;
+}
+
+.cointainerdiv{
+    background-color: #d2d2d2;
+    border-radius: 8px;
+    width: 35rem;
+    height: 15rem;
+    margin-left: 31rem;
+    margin-bottom: 8rem;
+    border: 6px solid rgb(146, 146, 146);
+    margin-top: 5rem;
+}
+
+.img{
+    margin-top: 2rem;
+    justify-content: center;
+    margin-left: 9rem;
+}
+
+.link{
+    text-decoration: none;
+    color: black;
+    font-size: 1.5rem;
+    margin-left: 12rem;
+}
+
+.text{
+  margin-left: 6rem;
+}
