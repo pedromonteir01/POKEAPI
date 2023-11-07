@@ -290,8 +290,7 @@ export default function Home() {
 
                 <ul className={styles.PokemonList}>
                   {allPokemons.map((pokemon, index) => (
-                    <Card name={pokemon.name} image={pokemon.sprite} types={pokemon.types} index={index} show={() => showPokedex(pokemon.id, index)} />                  
-
+                    <Card name={pokemon.name} image={pokemon.sprite} types={pokemon.types} index={index} setRegister={setRegister} pokemons={allPokemons} modelPokemons={pokedex} id={pokemon.id} show={() => showPokedex(pokemon.id, index)} />
                   ))}
                 </ul>
               </div>
